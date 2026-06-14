@@ -879,3 +879,55 @@ body::before {
         max-height: 400px; 
     }
 }
+
+.job {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid #58a6ff;
+}
+.job-title {
+    font-weight: bold;
+    color: #f0883e;
+    font-size: 1.2em;
+}
+.job-company {
+    color: #8b949e;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+/* --- 1. Animasi 3D Fade In Berulang (Infinite) --- */
+@keyframes fadeIn3DRepeat {
+    0% {
+        opacity: 0;
+        /* Mulai dari jauh di dalam layar (Z-axis negatif) dan mendongak */
+        transform: translateZ(-200px) rotateX(10deg) scale(0.9);
+    }
+    15%, 85% {
+        opacity: 1;
+        /* Posisi diam sempurna dan jelas di layar */
+        transform: translateZ(0) rotateX(0deg) scale(1);
+    }
+    100% {
+        opacity: 0;
+        /* Kembali menjauh atau memudar sebelum mengulang lagi */
+        transform: translateZ(-200px) rotateX(10deg) scale(0.9);
+    }
+}
+
+/* --- 2. Animasi Teks Transparan Berulang (Pulse Glow) --- */
+.animasi-teks-transparan {
+    animation: textTransparentPulse 3s ease-in-out infinite;
+}
+
+@keyframes textTransparentPulse {
+    0%, 100% {
+        color: rgba(88, 166, 255, 1); /* Warna solid penuh */
+        text-shadow: 0 0 8px rgba(88, 166, 255, 0.6);
+    }
+    50% {
+        color: rgba(88, 166, 255, 0.3); /* Teks menjadi sangat transparan */
+        text-shadow: 0 0 0px rgba(88, 166, 255, 0);
+    }
+}
