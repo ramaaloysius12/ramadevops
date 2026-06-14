@@ -1,0 +1,881 @@
+
+.hologram-bg-icon {
+    position: absolute;
+    font-size: 5.5rem; /* Sedikit diperbesar agar visual warnanya makin memukau */
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 0;
+    
+    /* Memicu 2 Animasi: Bergerak Spasial + Efek Kedip Memudar */
+    animation: holoMovement 14s ease-in-out infinite alternate,
+               holoGlitchFade 7s ease-in-out infinite alternate;
+}
+
+/* ==================================================
+   TEMBAKAN WARNA SPESIFIK TIAP IKON (FULL COLOR NEON)
+   ================================================== */
+
+/* 1. HTML5 - Merah Neon Menyala */
+.tool-html, .tool-html i {
+    color: #ff4500 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)) 
+            drop-shadow(0 0 25px rgba(255, 69, 0, 0.4)) !important;
+}
+
+/* 2. Python - Kuning Emas Glow */
+.tool-python, .tool-python i {
+    color: #ffd700 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) 
+            drop-shadow(0 0 25px rgba(255, 215, 0, 0.4)) !important;
+}
+
+/* 3. Linux - Pink/Rose Cyberpunk */
+.tool-linux, .tool-linux i {
+    color: #ff69b4 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.8)) 
+            drop-shadow(0 0 25px rgba(255, 105, 180, 0.4)) !important;
+}
+
+/* 4. DevOps (Docker) - Biru Cyan Terang */
+.tool-docker, .tool-docker i {
+    color: #00f2fe !important;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.8)) 
+            drop-shadow(0 0 25px rgba(0, 242, 254, 0.4)) !important;
+}
+
+/* 5. CI/CD (Teks DevOps) - Ungu Hologram Master */
+.tool-cicd {
+    color: #b948ff !important;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 10px rgba(185, 72, 255, 0.8)) 
+            drop-shadow(0 0 25px rgba(185, 72, 255, 0.4)) !important;
+}
+
+/* 6. Digital Marketing (ADS) - Hijau Lime Stabilo */
+.tool-ads {
+    color: #39ff14 !important;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.8)) 
+            drop-shadow(0 0 25px rgba(57, 255, 20, 0.4)) !important;
+}
+
+
+/* ==================================================
+   SISTEM LOGIKA ANIMASI (MOVING & FADING)
+   ================================================== */
+
+/* Animasi Gerakan Spasial Mengambang Menyilang */
+@keyframes holoMovement {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    50% { transform: translate(25px, -35px) rotate(6deg) scale(1.08); }
+    100% { transform: translate(-15px, 45px) rotate(-5deg) scale(0.92); }
+}
+
+/* Animasi Kedip Memudar Malfungsi Cahaya Proyektor */
+@keyframes holoGlitchFade {
+    0%, 20%, 100% { opacity: 0.5; } /* Kondisi dasar: warna keluar jernih */
+    45% { opacity: 0.85; }          /* Menguat sangat tajam */
+    48% { opacity: 0.15; }          /* Drop drastis (efek kedip) */
+    52% { opacity: 0.6; }           /* Pulih kembali */
+    80% { opacity: 0.08; }          /* Menghilang hampir transparan */
+}
+
+
+/* ==================================================
+   PENATAAN TITIK KOORDINAT LAYAR & JEDA WAKTU ACAK
+   ================================================== */
+.tool-html    { left: 6%;  top: 12%; animation-delay: 0s, 0s; }
+.tool-cicd    { right: 8%; top: 22%; animation-delay: -3s, -1.5s; }
+.tool-python  { left: 12%; top: 42%; animation-delay: -6s, -4s; }
+.tool-ads     { right: 5%; top: 52%; animation-delay: -1.5s, -5.5s; }
+.tool-linux   { left: 4%;  top: 72%; animation-delay: -9s, -2s; }
+.tool-docker  { right: 9%; top: 82%; animation-delay: -4.5s, -3.5s; }
+
+/* Optimasi Layar Smartphone */
+@media (max-width: 768px) {
+    .hologram-bg-icon { font-size: 3.5rem; }
+    .tool-cicd { font-size: 2.2rem; }
+    .tool-ads { font-size: 2rem; }
+    
+    @keyframes holoGlitchFade {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.08; }
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --text-white: #ffffff;
+    --text-glow: #e0f2fe;
+    --accent-blue: #38bdf8;
+    --accent-purple: #a855f7;
+    
+    /* Variabel Warna Gradien Langit 3D Tiap Halaman */
+    --bg-home: linear-gradient(180deg, #020617 0%, #0b1329 50%, #1e1b4b 100%);
+    --bg-portfolio: linear-gradient(135deg, #090514 0%, #11072c 40%, #1e114a 100%);
+    --bg-contact: linear-gradient(225deg, #030712 0%, #081c36 60%, #0d3b66 100%);
+    
+    /* Bayangan Kedalaman Ruang Efek 3D */
+    --shadow-3d: 0 30px 60px rgba(0, 0, 0, 0.6), 
+                 inset 0 2px 4px rgba(255, 255, 255, 0.15),
+                 0 0 40px rgba(56, 189, 248, 0.1);
+    --border-3d: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-white);
+    background-color: #020617;
+    position: relative;
+}
+
+/* Penempatan Background Gradien Berdasarkan Kelas Halaman */
+body.home-page { background: var(--bg-home); }
+body.portfolio-page { background: var(--bg-portfolio); }
+body.contact-page { background: var(--bg-contact); }
+
+/* Glow Blobs Background Ornament */
+body::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #38bdf8, #a855f7);
+    filter: blur(130px);
+    opacity: 0.15;
+    top: 15%;
+    left: 10%;
+    z-index: -1;
+    pointer-events: none;
+} 
+
+/* Canvas Komponen Bintang */
+#starsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==================================================
+   2. NAVIGATION BAR (GLASSMORPHISM)
+   ================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+.logo span {
+    color: var(--accent-blue);
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--accent-blue);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-white);
+    transition: transform 0.3s ease;
+}
+
+/* ==================================================
+   3. HERO SECTION & TRANS-3D HERO CARD (FIXED BUG)
+   ================================================== */
+.hero-container {
+    height: auto !important; /* FIX: Lepas 100vh kaku agar tidak menjepit box visual bawah */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Urutkan dari atas ke bawah secara simetris */
+    align-items: center;
+    justify-content: center;
+    padding: 140px 20px 80px 20px; /* Atur ruang napas layout */
+    position: relative;
+    z-index: 10;
+    gap: 40px; /* Jarak aman antara kartu dan box visual linux */
+}
+
+/* Kartu Utama: Dioptimasi Menjadi Transparan Glassmorphism */
+.hero-card-3d {
+    background: rgba(255, 255, 255, 0.03) !important; /* Transparan premium */
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    padding: 60px 40px;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(56, 189, 248, 0.05) !important;
+    transform: perspective(1000px) rotateX(10deg) rotateY(-5deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.hero-card-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-5px);
+    box-shadow: 0 40px 80px rgba(56, 189, 248, 0.2), inset 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.hero-card-3d h1 {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.hero-card-3d p {
+    font-size: 1.15rem;
+    color: #cbd5e1 !important;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Tombol Aksi Bergaya Timbul Spasial */
+.btn-3d {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #0284c7 100%);
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 16px;
+    box-shadow: 0 8px 0px #0369a1, 0 20px 30px rgba(56, 189, 248, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-3d:hover {
+    transform: translateY(2px);
+    box-shadow: 0 6px 0px #0369a1, 0 15px 20px rgba(56, 189, 248, 0.3);
+}
+
+.btn-3d:active {
+    transform: translateY(8px);
+    box-shadow: 0 0px 0px transparent;
+}
+
+/* ==================================================
+   4. ANIMATIONS & EFFECTS
+   ================================================== */
+.fade-out-text {
+    opacity: 1;
+    animation: triggerFadeOut 5s ease-in-out infinite alternate;
+}
+
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1s; }
+
+@keyframes triggerFadeOut {
+    0%, 75% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0.15; transform: translateY(-8px); }
+}
+
+.typing-text {
+    color: #38bdf8;
+    font-weight: bold;
+    border-right: 2px solid #fff;
+    animation: blinkCursor 0.75s step-end infinite;
+    padding-right: 4px;
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent }
+    50% { border-color: #38bdf8; }
+}
+
+/* ==================================================
+   5. VISUAL 3D KOTAK TRANSPARAN IKON LINUX (TERISOLASI)
+   ================================================== */
+.linux-visual-3d {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 580px !important;
+    height: 250px !important; 
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important; /* Rata tengah yang solid */
+}
+
+.center-label {
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.linux-master-icon {
+    font-size: 2.5rem;
+    color: #ffffff;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.center-label span {
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: blue;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.linux-stage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.linux-icon-particle {
+    position: absolute;
+    opacity: 0;
+    filter: drop-shadow(0 0 10px currentColor);
+    transform-style: preserve-3d;
+    animation: linux3DAnimation 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 25px #38bdf8); }
+}
+
+@keyframes linux3DAnimation {
+    0% { transform: translateY(120%) scale(0.3) rotateX(45deg) rotateY(0deg); opacity: 0; }
+    20% { opacity: 0.7; }
+    80% { opacity: 0.7; }
+    100% { transform: translateY(-30%) scale(1.3) rotateX(0deg) rotateY(180deg); opacity: 0; }
+}
+
+/* ==================================================
+   6. PORTFOLIO & SKILLS LAYOUT
+   ================================================== */
+.content-wrapper {
+    padding: 140px 8% 80px 8%;
+    position: relative;
+    z-index: 10;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h1, .section-title h2 {
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; 
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.card-3d-item {
+    background: rgba(17, 24, 39, 0.55);
+    border: var(--border-3d);
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-3d);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-3d-item:hover {
+    transform: translateY(-12px) scale(1.03) rotateY(5deg);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+.icon-box {
+    font-size: 32px;
+    color: var(--accent-blue);
+    margin-bottom: 20px;
+    display: inline-block;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+}
+
+.card-3d-item h3 { font-size: 1.4rem; margin-bottom: 15px; }
+.card-3d-item p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+.portfolio-card-3d {
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 24px;
+    overflow: hidden;
+    border: var(--border-3d);
+    box-shadow: var(--shadow-3d);
+    transition: transform 0.4s ease;
+}
+
+.portfolio-card-3d:hover { transform: translateY(-8px) rotateX(-5deg); }
+.p-banner {
+    background: liner-gradient(135deg, #4c1d95 0%, blue 100%);
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+.p-banner.spec { background: linear-gradient(135deg, #0f172a 0%,  100%); }
+.p-content { padding: 25px; }
+.p-content h3 { margin-bottom: 10px; }
+.p-content p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+
+.project-card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card-glass:hover {
+    transform: translateY(-6px);
+    border-color: rgba(56, 189, 248, 0.4); 
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.1);
+}
+
+/* ==================================================
+   7. TECHNICAL TOOLS LOGO SLIDER
+   ================================================== */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.tool-card-3d {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 2px 4px rgba(255, 255, 255, 0.05),
+                0 4px 0px rgba(15, 23, 42, 0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tool-card-3d:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px rgba(56, 189, 248, 0.15), 
+                inset 0 2px 6px rgba(255, 255, 255, 0.1),
+                0 12px 0px rgba(15, 23, 42, 0.6);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.slider-3d-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 30px 0;
+    margin-bottom: 60px;
+}
+
+.slider-3d-container::before, .slider-3d-container::after {
+    content: ""; height: 100%; position: absolute; width: 150px; z-index: 2; pointer-events: none;
+}
+.slider-3d-container::before { top: 0; left: 0; background: linear-gradient(to right, rgba(9, 5, 20, 1) 0%, rgba(9, 5, 20, 0) 100%); }
+.slider-3d-container::after { top: 0; right: 0; background: linear-gradient(to left, rgba(9, 5, 20, 1) 0%, rgba(9, 5, 20, 0) 100%); }
+
+.infinite-slider-track { display: flex; width: max-content; gap: 20px; }
+.row-left { animation: scrollLeft 35s linear infinite; }
+.row-right { animation: scrollRight 20s linear infinite; }
+.slider-3d-container:hover .infinite-slider-track { animation-play-state: paused; }
+
+.slide-item-3d {
+    background: rgba(30, 41, 59, 0.45);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 15px 25px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 4px 0px rgba(15, 23, 42, 0.9);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slide-item-3d:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 15px 25px rgba(56, 189, 248, 0.15), 0 8px 0px rgba(15, 23, 42, 0.7);
+}
+
+.slide-item-3d i { font-size: 24px; }
+.slide-item-3d span { font-size: 0.95rem; font-weight: 600; color: var(--text-white); white-space: nowrap; }
+
+/* Skema Warna Ikon */
+.slide-item-3d i.html { color: #ef4444; }
+.slide-item-3d i.css { color: #3b82f6; }
+.slide-item-3d i.python { color: #3776ab; }
+.slide-item-3d i.js { color: #eab308; }
+.slide-item-3d i.mysql { color: #00758f; }
+.slide-item-3d i.ahrefs { color: #ff6b00; }
+.slide-item-3d i.gsc { color: #4285f4; }
+.slide-item-3d i.gkp { color: #34a853; }
+.slide-item-3d i.g-ads { color: #4285f4; }
+.slide-item-3d i.meta-ads { color: #1877f2; }
+.slide-item-3d i.tiktok-ads { color: #00f2fe; }
+.slide-item-3d i.shopee-ads { color: #ee4d2d; }
+.slide-item-3d i.cicd { color: #10b981; }
+.slide-item-3d i.linux { color: #fda4af; }
+.slide-item-3d i.windows { color: #0078d4; }
+.slide-item-3d i.docker { color: #0db7ed; }
+
+@keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+/* ==================================================
+   8. CONTACT FORM SECTION
+   ================================================== */
+.contact-wrapper {
+    padding: 140px 20px 80px 20px; display: flex; justify-content: center; position: relative; z-index: 10;
+}
+.form-container-3d {
+    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(24px); border: var(--border-3d); padding: 50px 40px; border-radius: 32px; width: 100%; max-width: 580px; box-shadow: var(--shadow-3d); transform: perspective(1000px) rotateX(2deg);
+}
+.form-container-3d h2 { font-size: 2.2rem; margin-bottom: 10px; background: linear-gradient(135deg, #fff 0%, var(--accent-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.form-container-3d p { color: #94a3b8; margin-bottom: 35px; }
+.input-group-3d { margin-bottom: 25px; text-align: left; }
+.input-group-3d label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: #cbd5e1; }
+.input-group-3d input, .input-group-3d textarea { width: 100%; padding: 14px 20px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: var(--text-white); outline: none; font-size: 0.95rem; box-shadow: inset 0 4px 8px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+.input-group-3d input:focus, .input-group-3d textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(56, 189, 248, 0.25), inset 0 2px 4px rgba(0,0,0,0.5); }
+.btn-submit-3d { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent-purple) 0%, #6b21a8 100%); color: white; border: none; border-radius: 14px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 6px 0px #581c87, 0 15px 25px rgba(168, 85, 247, 0.25); transition: all 0.2s; }
+.btn-submit-3d:hover { transform: translateY(2px); box-shadow: 0 4px 0px #581c87, 0 10px 15px rgba(168, 85, 247, 0.25); }
+.btn-submit-3d:active { transform: translateY(6px); box-shadow: 0 0px 0px transparent; }
+
+/* ==================================================
+   9. FLOATING WHATSAPP CHATBOT (MODIFIKASI: HANYA LOGO NEON)
+   ================================================== */
+.chatbot-3d-wrapper {
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Modifikasi Tombol Menjadi Bulat Sempurna Pas Seukuran Ikon */
+.chatbot-3d-btn {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    font-size: 28px !important; /* Pas di tengah */
+    cursor: pointer;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.chatbot-3d-btn:hover {
+    transform: scale(1.1) translateY(-4px) !important;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6) !important;
+}
+
+/* Hilangkan Box Popover Teks / Chat Popover Panjang agar Murni Logo */
+.chat-popover, .chat-popover.show {
+    display: none !important;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #25d366;
+    left: 0;
+    top: 0;
+    animation: hybridPulse 2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes hybridPulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* ==================================================
+   10. MEDIA QUERIES RESPONSIF MOBILE
+   ================================================== */
+@media (max-width: 991px) {
+    .hero-container {
+        padding-top: 120px;
+        gap: 30px;
+    }
+    .hero-card-3d p {
+        font-size: 1rem;
+        margin-bottom: 30px !important; /* FIX: Tidak mendorong paksa lagi */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 0;
+        transition: left 0.4s ease;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links.active { left: 0; }
+    .nav-links a { display: block; margin: 20px 0; font-size: 1.1rem; }
+    .hamburger { display: block; }
+    .hero-card-3d {
+        padding: 40px 20px;
+        transform: none !important; /* Matikan kemiringan di HP agar teks aman */
+    }
+    .hero-card-3d h1 { font-size: 2rem; }
+    .linux-visual-3d {
+        max-width: 100% !important;
+        height: 220px !important;
+    }
+    
+    
+}
+
+/* ==================================================
+   PERBAIKAN TOTAL: KARTU PENDIDIKAN MAKSIMAL (FADE-HOVER)
+   ================================================== */
+
+.section-title-3d {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(168, 85, 247, 0.4);
+    margin-bottom: 50px !important; 
+}
+
+/* --- KARTU GLASSMORPHISM 3D JUMBO --- */
+.edu-card-3d {
+    background: rgba(15, 23, 42, 0.35) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    padding: 45px 40px; /* Ukuran dalam kartu dibuat sangat lapang */
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    
+    /* Pengatur transisi tinggi kartu saat di-hover */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.5s ease,
+                max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+/* Garis Neon Laser Atas */
+.edu-glow-line {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 20px;
+    background: linear-gradient(90deg, transparent, #38bdf8, #a855f7, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+/* Wadah Ikon Kampus/Sekolah */
+.edu-icon-container {
+    width: 60px; /* Diperbesar */
+    height: 60px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: #38bdf8;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+    transform: translateZ(25px);
+}
+
+.edu-year {
+    display: block;
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #a855f7;
+    font-weight: bold;
+    letter-spacing: px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.edu-school {
+    font-size: 1.6rem; 
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 30px;
+    transform: translateZ(20px);
+}
+
+
+.edu-fadeout-text-container {
+    position: relative;
+    max-height: 85px; 
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+    
+    /* Mematikan fungsi sisa-sisa animasi scroll sebelumnya */
+    animation: none !important; 
+}
+
+.edu-description {
+    font-size: 0.95rem; 
+    line-height: 1.7;
+    color: #94a3b8;
+    text-align: left;
+    animation: none !important; 
+    transition: color 0.4s ease;
+}
+
+
+.edu-card-3d:hover {
+    transform: translateY(-10px) rotateX(8deg) rotateY(-3deg);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 40px 80px rgba(56, 189, 248, 0.2),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+
+.edu-card-3d:hover .edu-fadeout-text-container {
+    max-height: 300px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 100%, #000 100%);
+    mask-image: linear-gradient(to bottom, #000 100%, #000 100%);
+}
+
+.edu-card-3d:hover .edu-glow-line {
+    transform: translateX(100%);
+    transition: transform 0.8s ease;
+}
+
+.edu-card-3d:hover .edu-description {
+    color: #e2e8f0;
+}
+
+
+@media (max-width: 768px) {
+    .edu-card-3d {
+        padding: 35px 25px; 
+    }
+    .edu-school {
+        font-size: 1.35rem;
+    }
+    
+    .edu-card-3d:hover .edu-fadeout-text-container {
+        max-height: 400px; 
+    }
+}
