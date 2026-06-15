@@ -1,0 +1,26 @@
+name: Deploy Web Portofolio Rama
+
+# 1. Kapan robot ini jalan? (Tiap ada push ke branch main)
+on:
+  push:
+    branches: ["main"]
+
+# 2. Apa saja tugas yang harus dilakukan robot?
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode terbaru dari repo
+        uses: actions/checkout@v4
+
+      - name: Atur sistem GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Unggah file HTML & CSS kamu
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Terbitkan ke Internet!
+        id: deployment
+        uses: actions/deploy-pages@v4
