@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m "mengisi github yang kosong"
+git commit -m "project devops"
 git push -u origin main
