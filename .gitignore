@@ -1,0 +1,13 @@
+# File sampah Windows
+*:Zone.Identifier
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database (biarkan lokal saja, jangan di-push ke cloud)
+db.sqlite3
+
+# Virtual Environment (biasanya folder venv)
+venv/
+.env
