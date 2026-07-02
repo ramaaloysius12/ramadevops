@@ -1,37 +1,23 @@
-name: DevOps CI-CD Pipeline
+name: Build and Push Docker Image
 
 on:
   push:
     branches: [ "main" ]
 
-permissions:
-  contents: write
-
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Validate Code Structure
-      run: |
-        echo "=== MEMULAI PROSES CI (INTEGRASI) ==="
-        if [ -f index.html ]; then
-          echo "✔ Sukses: File index.html ditemukan!"
-        else
-          echo "❌ Error: File index.html hilang!" && exit 1
-        fi
-        
-        if [ -f style.css ]; then
-          echo "✔ Sukses: File style.css ditemukan!"
-        else
-          echo "❌ Error: File style.css hilang!" && exit 1
-        fi
+      - name: Login ke Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Deploy to GitHub Pages (CD)
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: .
-        branch: gh-pages
+      - name: Build & Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .  # pastikan Dockerfile ada di root
