@@ -1,5 +1,4 @@
 name: Build and Push Docker Image
-
 on:
   push:
     branches: [ "main" ]
@@ -8,7 +7,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Login ke Docker Hub
@@ -20,4 +19,7 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v5
         with:
-          context: .  # pastikan Dockerfile ada di root
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ramahaxor/ramadevops-django:latest, ramahaxor/ramadevops-django:${{ github.sha }}
